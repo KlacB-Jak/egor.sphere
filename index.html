@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="НИИ «Сфера»">
+<title>НИИ «Сфера» · Досье</title>
+
+<link rel="icon" type="image/x-icon" href="favicon.ico?v=1">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=1">
+<link rel="shortcut icon" href="favicon.ico?v=1">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon.png?v=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;600;800&family=VT323&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ BOOT ============ -->
+<div id="boot" class="boot">
+    <div class="boot__scan"></div>
+    <div class="boot__inner">
+        <pre class="boot__log" id="bootLog"></pre>
+    </div>
+</div>
+
+<!-- ============ ЭФФЕКТЫ ============ -->
+<div class="fx fx--scanlines"></div>
+<div class="fx fx--noise"></div>
+<div class="fx fx--vignette"></div>
+<div class="fx fx--grain"></div>
+<div class="fx fx--edge"></div>
+<div class="fx fx--glitch" id="fxGlitch"></div>
+
+<!-- ============ ОСНОВНОЙ ИНТЕРФЕЙС ============ -->
+<div class="shell" id="shell" hidden>
+
+    <header class="head">
+        <div class="head__left">
+            <a class="head__mark" href="#dossier" data-nav data-page="dossier">НИИ «СФЕРА»</a>
+            <span class="head__sub">Научно-исследовательский институт «Сфера»</span>
+        </div>
+        <div class="head__right">
+            <div class="vol">
+                <span class="vol__label">ЗВУК</span>
+                <input type="range" id="vol" min="0" max="100" value="50" class="vol__slider">
+                <button class="vol__mute" id="muteBtn">mute</button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="tabs">
+        <a class="tab" data-nav data-page="dossier"       href="#dossier">Личное дело</a>
+        <a class="tab" data-nav data-page="dialog"        href="#dialog">Переписка</a>
+        <a class="tab" data-nav data-page="motivation"    href="#motivation">Мотивация</a>
+        <a class="tab" data-nav data-page="goals"         href="#goals">Личные подцели</a>
+        <a class="tab" data-nav data-page="goals-shared"  href="#goals-shared">Общие цели</a>
+    </nav>
+
+    <main class="content" id="content"></main>
+
+    <div class="hint-bar" id="hintBar">
+        <span class="hint-bar__dot"></span>
+        <span>клик по странице — открыть следующую реплику</span>
+    </div>
+
+    <footer class="foot">
+        <span>НИИ «СФЕРА» · 1974—1991</span>
+    </footer>
+</div>
+
+<!-- ============================================================
+     ШАБЛОНЫ СТРАНИЦ
+     ============================================================ -->
+
+<!-- ==================================================
+     1. ЛИЧНОЕ ДЕЛО
+     ================================================== -->
+<script type="text/template" id="tpl-dossier">
+<section class="doc doc--dossier">
+
+    <h2 class="doc__title">ЛИЧНОЕ ДЕЛО</h2>
+
+    <div class="dossier__name">Смирнов Егор Дмитриевич.</div>
+
+    <dl class="dossier__meta">
+        <div class="field">
+            <dt class="field__label">Возраст</dt>
+            <dd class="field__value">22 года.</dd>
+        </div>
+        <div class="field">
+            <dt class="field__label">Пол</dt>
+            <dd class="field__value">мужской.</dd>
+        </div>
+        <div class="field field--wide">
+            <dt class="field__label">Образование</dt>
+            <dd class="field__value">студент МГТУ им. Баумана, факультет информатики и систем управления. Отчислен в 2024 за неуспеваемость.</dd>
+        </div>
+        <div class="field field--wide">
+            <dt class="field__label">Место работы</dt>
+            <dd class="field__value">фрилансер. Взломы, утечки данных, «серая» работа в сети.</dd>
+        </div>
+    </dl>
+
+    <div class="dossier__section">Биография</div>
+
+    <div class="dossier__body">
+        <p>Родился в Москве, в семье программистов. Отец — разработчик, мать — тестировщик. Дома — компьютеры с трех лет. Первый код написал в семь. Первый взлом — в двенадцать. Школьный сервер. Ради интереса.</p>
+
+        <p>В школе был одиночкой. Учился хорошо, но не любил коллектив. Сидел в сети. Играл. Взламывал. Читал форумы. В 16 — первый заказ. Деньги. Азарт. Свобода.</p>
+
+        <p>В 2020 поступил в Бауманку. Учился скучно. Программы казались примитивными. Преподаватели — отставшими от жизни. Он знал больше, чем они. И не скрывал. Конфликты. Пропуски. В 2024 — отчисление.</p>
+
+        <p>К этому моменту уже зарабатывал взломами. Брал заказы на форумах. Взламывал корпоративные сети, базы данных, личные аккаунты. Не для идеологии. Для денег. И для любопытства.</p>
+
+        <p>Семья не знала. Отец думал, что он учится. Мать — что подрабатывает. Он не говорил. Не считал нужным.</p>
+
+        <p>В 2023 умер дед. Точнее — не умер. Заснул. «Сонная болезнь». Врачи сказали: «Он в коме. Причина неизвестна. Прогнозов нет».</p>
+
+        <p>Егор начал копать. Взломал базы клиник. Нашёл закономерность: все пациенты с «сонной болезнью» в прошлом были связаны с одним объектом. НИИ «Сфера». Дед — один из первых испытуемых. 1979 год.</p>
+
+        <p>Он нашёл архивы. Частично. Старые документы. Списки. Фамилии. Среди них — фамилия деда. Среди них — фамилия Крылова.</p>
+
+        <p class="dossier__final">Не спал три дня. Копал. Взламывал. Искал. Нашёл координаты. И ещё одну вещь: список людей, которые недавно интересовались объектом. Среди них — он сам.</p>
+    </div>
+
+</section>
+</script>
+
+<!-- ==================================================
+     2. ПЕРЕПИСКА
+     ================================================== -->
+<script type="text/template" id="tpl-dialog">
+<section class="doc doc--dialog">
+
+    <h2 class="doc__title">РАЗГОВОР</h2>
+
+    <div class="scene print" data-lines='["Три монитора светятся в темноте. Егор не спал третьи сутки. На одном — список пациентов НИИ «Сфера». На втором — база клиники. На третьем — код, который он пытается взломать. Звонок. Егор вздрагивает. Отвечает не сразу."]'></div>
+
+    <div class="chat">
+        <div class="chat__line print" data-lines='["— Егор Дмитриевич?"]'></div>
+        <div class="chat__line print" data-lines='["— Кто это?"]'></div>
+        <div class="chat__line print" data-lines='["— Тот, кто прислал ссылку."]'></div>
+    </div>
+
+    <div class="scene print" data-lines='["Егор напрягается. Ссылка была на закрытый форум. Он никому не говорил."]'></div>
+
+    <div class="chat">
+        <div class="chat__line print" data-lines='["— Что вам нужно?"]'></div>
+        <div class="chat__line print" data-lines='["— Ничего. Уже ничего. Вы сами всё нашли."]'></div>
+        <div class="chat__line print" data-lines='["— Я не всё нашёл. Я нашел обрывки."]'></div>
+        <div class="chat__line print" data-lines='["— Правильно. Полное — внутри. В НИИ. В архивах. На магнитных лентах. В системе «Морфей»."]'></div>
+        <div class="chat__line print" data-lines='["— Что такое «Морфей»?"]'></div>
+        <div class="chat__line print" data-lines='["— Узнаете. Если поедете."]'></div>
+        <div class="chat__line print" data-lines='["— Куда поеду?"]'></div>
+        <div class="chat__line print" data-lines='["— В НИИ «Сфера». Двадцать второе марта. С группой."]'></div>
+        <div class="chat__line print" data-lines='["— Почему я должен ехать с какой-то группой? Я работаю один."]'></div>
+        <div class="chat__line print" data-lines='["— Потому что один вы не войдете. Там охрана. Там люди. Там система, которая видит всё. Один вы просто пропадете. С группой — шанс."]'></div>
+        <div class="chat__line print" data-lines='["— А если откажусь?"]'></div>
+        <div class="chat__line print" data-lines='["— Тогда останетесь здесь. С обрывками. С вопросом. С дедом, который спит. И с чувством, что могли — и не поехали."]'></div>
+    </div>
+
+    <div class="scene print" data-lines='["Пауза. Егор смотрит на список. На деда. Смирнов Пётр Ильич. 1979."]'></div>
+
+    <div class="chat">
+        <div class="chat__line print" data-lines='["— Что я должен делать?"]'></div>
+        <div class="chat__line print" data-lines='["— Взломать систему. Когда группа дойдёт до ЭВМ — вам нужно открыть ее. Не сломать. Открыть. Вы — единственный, кто может."]'></div>
+        <div class="chat__line print" data-lines='["— Я не знаю, с чем работаю."]'></div>
+        <div class="chat__line print" data-lines='["— Разберетесь. Вы — лучший. Мы проверяли."]'></div>
+        <div class="chat__line print" data-lines='["— Как вы меня проверяли?"]'></div>
+        <div class="chat__line print" data-lines='["— Вы взломали сервер Бауманки в двенадцать лет. Базу клиники за две недели. Вы — лучший. Этого достаточно."]'></div>
+    </div>
+
+    <div class="scene print" data-lines='["Егор долго молчит. Смотрит на монитор."]'></div>
+
+    <div class="chat">
+        <div class="chat__line print" data-lines='["— Я возьму своё железо."]'></div>
+        <div class="chat__line print" data-lines='["— Возьмите. Но внутрь пронесёте не всё. Там свои правила."]'></div>
+        <div class="chat__line print" data-lines='["— Ладно. Двадцать второе марта."]'></div>
+        <div class="chat__line print" data-lines='["— Двадцать второе марта."]'></div>
+        <div class="chat__line print" data-lines='["— И ещё. Что там с дедом? Он жив?"]'></div>
+    </div>
+
+    <div class="scene print" data-lines='["Долгая пауза."]'></div>
+
+    <div class="chat">
+        <div class="chat__line print" data-lines='["— Он в коме. Как и все остальные. Но жив. Пока."]'></div>
+        <div class="chat__line print" data-lines='["— «Пока»?"]'></div>
+        <div class="chat__line print" data-lines='["— Система работает автономно. Но она не вечная. Рано или поздно отключится. И тогда — все, кто внутри, умрут."]'></div>
+        <div class="chat__line print" data-lines='["— Сколько у нас времени?"]'></div>
+        <div class="chat__line print" data-lines='["— Не знаю. Может, год. Может, месяц. Может, неделя."]'></div>
+        <div class="chat__line print" data-lines='["— Почему не сказали сразу?"]'></div>
+        <div class="chat__line print" data-lines='["— Потому что вы бы не поехали. Паниковали бы. А нам нужен холодный ум."]'></div>
+        <div class="chat__line print" data-lines='["— Вы сволочи."]'></div>
+        <div class="chat__line print" data-lines='["— Мы реалисты. Двадцать второе марта. Не опаздывайте."]'></div>
+    </div>
+
+    <div class="scene scene--final print" data-lines='["Егор кладёт трубку. Смотрит на список. Смирнов Пётр Ильич. Дед. 1979. Напротив — пометка. Одна буква: «Ж». Жив."]'></div>
+
+</section>
+</script>
+
+<!-- ==================================================
+     3. МОТИВАЦИЯ
+     ================================================== -->
+<script type="text/template" id="tpl-motivation">
+<section class="doc doc--motivation">
+
+    <h2 class="doc__title">МОТИВАЦИЯ</h2>
+
+    <div class="motivation">
+        <p class="motivation__lead">Дед в коме с 2023 года. «Сонная болезнь». Врачи: «Причина неизвестна». Егор не поверил.</p>
+
+        <p>Взломал базы клиник. Нашёл закономерность: все пациенты связаны с одним объектом — НИИ «Сфера». Дед — один из первых испытуемых, 1979 год.</p>
+
+        <p class="motivation__final">Он должен узнать, что произошло. Не из любопытства. Из вины. Дед рассказывал ему о «плохих снах» — а он не слушал. Смеялся. Говорил: «Деда, это возраст».</p>
+    </div>
+
+</section>
+</script>
+
+<!-- ==================================================
+     4. ЛИЧНЫЕ ПОДЦЕЛИ
+     ================================================== -->
+<script type="text/template" id="tpl-goals">
+<section class="doc doc--goals">
+
+    <h2 class="doc__title">ЛИЧНЫЕ ПОДЦЕЛИ</h2>
+
+    <ol class="goals">
+        <li class="goal">
+            <div class="goal__num">01</div>
+            <div class="goal__body">
+                <p class="goal__main">Найти технические характеристики системы. Понять, как её взломать.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">02</div>
+            <div class="goal__body">
+                <p class="goal__main">Найти списки первых пациентов. Найти имя деда.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">03</div>
+            <div class="goal__body">
+                <p class="goal__main">Найти любые записи о препаратах, которые вводили пациентам. Понять, что кололи деду.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">04</div>
+            <div class="goal__body">
+                <p class="goal__main">Найти электронные архивы. Скачать. Опубликовать.</p>
+            </div>
+        </li>
+    </ol>
+
+</section>
+</script>
+
+<!-- ==================================================
+     5. ОБЩИЕ ЦЕЛИ — НЕ ТРОГАЕМ
+     ================================================== -->
+<script type="text/template" id="tpl-goals-shared">
+<section class="doc doc--goals">
+
+    <h2 class="doc__title">ОБЩИЕ ЦЕЛИ</h2>
+
+    <ol class="goals">
+        <li class="goal">
+            <div class="goal__num">01</div>
+            <div class="goal__body">
+                <p class="goal__main">Проникнуть на территорию НИИ «Сфера».</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">02</div>
+            <div class="goal__body">
+                <p class="goal__main">Найти вход в подземный бункер.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">03</div>
+            <div class="goal__body">
+                <p class="goal__main">Добраться до ЭВМ «Морфей» — ядро системы.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">04</div>
+            <div class="goal__body">
+                <p class="goal__main">Запустить систему. Вывести из консервации.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">05</div>
+            <div class="goal__body">
+                <p class="goal__main">Погрузиться в коллективный сон. Все восемь — одновременно.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">06</div>
+            <div class="goal__body">
+                <p class="goal__main">Внутри сна — найти источник «сонной болезни».</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">07</div>
+            <div class="goal__body">
+                <p class="goal__main">Остановить распространение. Любым способом.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">08</div>
+            <div class="goal__body">
+                <p class="goal__main">Вернуться с данными. Если получится — все. Если нет — хотя бы один.</p>
+            </div>
+        </li>
+    </ol>
+
+</section>
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
